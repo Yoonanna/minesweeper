@@ -1,0 +1,33 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: blueviolet;
+}
+
+.caption {
+    text-align: center;
+    font: italic bold 54px Arial;
+}
+
+.game {
+    max-height: 300px;
+    max-width: 300px;
+    background-color: blue;
+    margin: 30px auto;
+}
+
+.info {
+    height: 15%;
+    width: 90%;
+}
+
+.field {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+}
+
+button {
+    height: 40px;
+    font-size: 24px;
+}
