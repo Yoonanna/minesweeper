@@ -19,7 +19,6 @@ let field = document.createElement('div');
 field.className = 'field';
 game.append(field);
 
-
 function start(width, heigth, minesCount) {
     let cells = width * heigth;
     field.innerHTML = '<button></button>'.repeat(cells);
