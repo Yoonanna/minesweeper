@@ -14,6 +14,18 @@ wrapper.append(game);
 let info = document.createElement('div');
 info.className = 'info';
 game.append(info);
+let counter = document.createElement('div');
+counter.className = 'counter';
+counter.innerText = '010';
+info.append(counter);
+let smile = document.createElement('div');
+smile.className = 'smile';
+smile.innerText = '\u{1F604}';
+info.append(smile);
+let timer = document.createElement('div');
+timer.className = 'timer';
+timer.innerText = 'time';
+info.append(timer);
 
 let field = document.createElement('div');
 field.className = 'field';
