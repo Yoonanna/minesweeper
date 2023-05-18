@@ -99,3 +99,60 @@ button {
     cursor: pointer;
     padding: 2px;
 }
+
+@media screen and (max-width: 500px) {
+
+    .modal {
+        height: 13rem;
+        width: 20rem;
+        margin: -45% auto;
+        font-size: 45px;
+        padding: 40px;
+    }
+
+    .caption {
+
+        font-size: 2rem;
+
+    }
+
+    .game {
+        max-height: 100%;
+        max-width: 12rem;
+    }
+
+    .info {
+
+        margin: 0.5rem;
+
+    }
+
+    .counter,
+    .timer,
+    .smile {
+        height: 2rem;
+        width: 3rem;
+        padding: 5px;
+        font-size: 17px;
+    }
+
+    .smile {
+        padding: 0;
+        line-height: 0.7;
+
+    }
+
+    .field {
+
+        grid-template-columns: repeat(10, 1rem);
+        margin: 0.7rem;
+    }
+
+    button {
+        font-size: 9px;
+        height: 1rem;
+        padding: 1px;
+    }
+
+
+}

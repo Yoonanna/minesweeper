@@ -4,7 +4,7 @@ document.body.append(wrapper);
 
 let caption = document.createElement('p');
 caption.className = 'caption';
-caption.innerText = 'pushhhhhhh...';
+caption.innerText = 'pushhhhhhh...on a square (¬‿¬)';
 wrapper.append(caption);
 
 let game = document.createElement('div');
