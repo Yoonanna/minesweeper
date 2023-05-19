@@ -57,12 +57,36 @@ function start(width, heigth, minesCount) {
         counter.innerText++;
 
     });
+    field.addEventListener('mousedown', (event) => {
+
+        if (event.button == 2) {
+            console.log(event);
+            event.button.innerHTML = '\u{1F3F4}';
+            window.oncontextmenu = (function (e) {
+                return false;
+            });
+        }
+    });
     function nearMines(row, column) {
-        let count = 0;
+        let btn = event.target;
+        let count = ' ';
+        btn.style.backgroundColor = '#48656b'
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
                 if (isMine((row + j), (column + i))) {
                     count++;
+
+                    if (count == 1) {
+                        btn.style.backgroundColor = '#98423c'
+                    } else if (count === 2) {
+                        btn.style.backgroundColor = '#467baa'
+                    } else if (count === 3) {
+                        btn.style.backgroundColor = '#ffe35f'
+                    } else if (count === 4) {
+                        btn.style.backgroundColor = '#00a86b'
+                    } else if (count === 5) {
+                        btn.style.backgroundColor = '#ffbdf0'
+                    }
                 }
             }
         }
@@ -76,29 +100,32 @@ function start(width, heigth, minesCount) {
             modal.classList.add('active');
             modal.innerText = 'Game over... Try again! =)';
             clearInterval(setTime);
-        }
-    }
+        };
+    };
     function isMine(row, column) {
+        if (!isValid(row, column)) return false;
         let index = row * width + column;
         return mines.includes(index);
     };
+    function isValid(row, column) {
+        let valid = row >= 0 && row < heigth && column >= 0 && column < width;
+        return valid;
+    }
 
 };
 start(10, 10, 10);
 
+// timer
 let setTime;
 let sec = 0;
 let min = 0;
 timer.innerHTML = '000';
 function tick() {
     sec++;
-
     if (sec < 10) { timer.innerHTML = '00' + sec }
     else if (sec >= 10 && sec < 100) { timer.innerHTML = '0' + sec }
     else { timer.innerHTML = ' ' + sec }
-
 };
-
 field.addEventListener('click', function init() {
     sec = 0;
     setTime = setInterval(tick, 1000);
@@ -106,3 +133,4 @@ field.addEventListener('click', function init() {
 });
 
 smile.addEventListener('click', () => window.location.reload());
+
