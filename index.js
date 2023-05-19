@@ -45,6 +45,7 @@ function start(width, heigth, minesCount) {
     let mines = [...Array(cells).keys()]
         .sort(() => Math.random() - 0.5)
         .slice(0, minesCount);
+    console.log(mines);
 
     field.addEventListener('click', (event) => {
         if (event.target.tagName !== 'BUTTON')
@@ -56,23 +57,32 @@ function start(width, heigth, minesCount) {
         counter.innerText++;
 
     });
+    function nearMines(row, column) {
+        let count = 0;
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                if (isMine((row + j), (column + i))) {
+                    count++;
+                }
+            }
+        }
+        return count
+    };
     function open(row, column) {
         let index = row * width + column;
         let cell = fieldCells[index];
-        cell.innerHTML = isMine(row, column) ? '\u{1F4A3}' : ' ';
+        cell.innerHTML = isMine(row, column) ? '\u{1F4A3}' : nearMines(row, column);
         if (cell.innerHTML == '\u{1F4A3}') {
             modal.classList.add('active');
             modal.innerText = 'Game over... Try again! =)';
             clearInterval(setTime);
         }
-
     }
     function isMine(row, column) {
         let index = row * width + column;
-
         return mines.includes(index);
+    };
 
-    }
 };
 start(10, 10, 10);
 
@@ -92,7 +102,7 @@ function tick() {
 field.addEventListener('click', function init() {
     sec = 0;
     setTime = setInterval(tick, 1000);
-    this.removeEventListener("click", arguments.callee);
+    this.removeEventListener('click', arguments.callee);
 });
 
 smile.addEventListener('click', () => window.location.reload());
