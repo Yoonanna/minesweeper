@@ -16,7 +16,7 @@
     width: 34rem;
     margin: -21% auto;
     background-color: rgba(73, 94, 86, 0.8);
-    font-size: 60px;
+    font-size: 50px;
     padding: 100px;
     color: aliceblue;
     display: none;
@@ -28,7 +28,11 @@
     z-index: 100;
 }
 
-
+.sizeBtn {
+    height: 45px;
+    width: 85px;
+    margin: 5%;
+}
 
 .caption {
     text-align: center;

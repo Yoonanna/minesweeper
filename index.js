@@ -42,6 +42,7 @@ function start(width, heigth, minesCount) {
     field.innerHTML = '<button></button>'.repeat(cells);
 
     let fieldCells = [...field.children];
+    let closed = cells;
     let mines = [...Array(cells).keys()]
         .sort(() => Math.random() - 0.5)
         .slice(0, minesCount);
@@ -58,15 +59,15 @@ function start(width, heigth, minesCount) {
 
     });
     field.addEventListener('mousedown', (event) => {
-
+        let btn = event.target;
         if (event.button == 2) {
-            console.log(event);
-            event.button.innerHTML = '\u{1F3F4}';
-            window.oncontextmenu = (function (e) {
-                return false;
-            });
+            btn.innerHTML = '🚩';
         }
-    });
+        window.oncontextmenu = (function (e) {
+            return false;
+        });
+    }
+    );
     function nearMines(row, column) {
         let btn = event.target;
         let count = ' ';
@@ -93,16 +94,28 @@ function start(width, heigth, minesCount) {
         return count
     };
     function open(row, column) {
+        if (!isValid(row, column)) return;
         let index = row * width + column;
         let cell = fieldCells[index];
+
         cell.innerHTML = isMine(row, column) ? '\u{1F4A3}' : nearMines(row, column);
+
         if (cell.innerHTML == '\u{1F4A3}') {
             modal.classList.add('active');
             modal.innerText = 'Game over... Try again! =)';
             clearInterval(setTime);
         };
+        closed--;
+        if (closed <= minesCount) {
+            modal.classList.add('active');
+            modal.innerText = `Hooray! You found all mines in ${timer.innerHTML} seconds and ${counter.innerText} moves!)`;
+            clearInterval(setTime);
+
+        }
+
     };
     function isMine(row, column) {
+
         if (!isValid(row, column)) return false;
         let index = row * width + column;
         return mines.includes(index);
@@ -133,4 +146,5 @@ field.addEventListener('click', function init() {
 });
 
 smile.addEventListener('click', () => window.location.reload());
+smile.addEventListener('click', start.bind(10, 10, 10));
 
